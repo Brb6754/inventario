@@ -167,6 +167,12 @@ cout<< "Bienvenido al control de inventario \n"
     << "1 Registrar Producto\n"
     << "2 Eliminar un articulo especifico\n";
     cin>>x;
+    
+    switch(x){
+        case 1: registrarProducto(Almacen , 7);
+        break;
+    }
 }while(x!=0 && x<7 && x>0);
     return 0;
 }
+
