@@ -10,7 +10,8 @@ enum TipoProducto{
     Desechables = 5,
     Limpieza = 6,
     Bebidas = 7,
-    Otros = 8
+    Otros = 8,
+    Vacio = 0
 };
 //Creamos la estructura 
 struct Articulo {
@@ -98,6 +99,9 @@ void registrarProducto(  Articulo Almacen[], const int size){
             <<"\n"
             <<"Costo Total: "
             <<Almacen[i].total
+            <<"\n"
+            <<"Poscision: "
+            <<i
             <<"\n";
             break;
             
@@ -106,7 +110,91 @@ void registrarProducto(  Articulo Almacen[], const int size){
 }
 }
 
+void eliminarProducto( Articulo Almacen[], const int size){
+    cout<<"Ingresa el nombre del producto que quieres eliminar\n";
+    string nombre;
+    cin>>nombre;
+    
+    for(int i=0; i<7; i++){
+        if(Almacen[i].nombre==nombre){
+            cout<<"Eliminaremos el elemento: "
+                <<nombre
+                <<"\nQue esta en la posicion: "
+                << i
+                <<"\nPara confirmar la operacion ingresa 1\n"
+                <<"Para rechazar la operacion y regresar al menu ingresa 2\n";
+            int opcion;
+            cin>>opcion;
+            if(opcion == 1){
+                Almacen[i].nombre="";
+                Almacen[i].cantidad=0;
+                Almacen[i].precio=0.00;
+                Almacen[i].tipo=Vacio;
+                cout<<"Registro Eliminado exitosamente";
+            }
+            else if(opcion == 2){
+                break;
+                }
+            else{
+                cout<<"El numero no es valido regresaras al menu\n para que vuelvas a intentarlo\n";
+            }
+        }
+    }
+}
 
+void imprimirRegistro(Articulo Almacen[], const int size){
+    cout<<"Ingresa el numero de articulo que deseas imprimir\n"
+        <<"Del 1 al 7\n";
+    int x;
+    cin>> x;
+    x=x-1;
+    cout<<"Nombre:"
+        <<Almacen[x].nombre
+        <<"\n"
+        <<"Cantidad:"
+        <<Almacen[x].cantidad
+        <<"\n"
+        <<"Precio:"
+        <<Almacen[x].precio
+        <<"\n"
+        <<"Disponibilidad:"
+        <<Almacen[x].disponibilidad
+        <<"\n"
+        <<"Tipo de Producto:"
+        <<Almacen[x].tipo
+        <<"\n"
+        <<"Gasto total:"
+        <<Almacen[x].total
+        <<"\n";
+}
+
+void imprimirCompleta(Articulo Almacen[], const int size){
+    for(int i=0; i<7; i++){
+        if(Almacen[i].nombre != ""){
+        cout<<"Nombre:"
+        <<Almacen[i].nombre
+        <<"\n"
+        <<"Cantidad:"
+        <<Almacen[i].cantidad
+        <<"\n"
+        <<"Precio:"
+        <<Almacen[i].precio
+        <<"\n"
+        <<"Disponibilidad:"
+        <<Almacen[i].disponibilidad
+        <<"\n"
+        <<"Tipo de Producto:"
+        <<Almacen[i].tipo
+        <<"\n"
+        <<"Gasto total:"
+        <<Almacen[i].total
+        <<"\n"
+        <<"\n";
+            
+        }
+    }
+    
+}
 int main() {
 //Declaramos el arreglo de estructuras
 Articulo Almacen[7];
@@ -165,14 +253,23 @@ do{
 cout<< "Bienvenido al control de inventario \n"
     << "Menu:\n"
     << "1 Registrar Producto\n"
-    << "2 Eliminar un articulo especifico\n";
+    << "2 Eliminar un articulo especifico\n"
+    << "3 Imprimir un articulo especifico\n"
+    << "4 Imprimir la lista completa\n";
     cin>>x;
     
     switch(x){
         case 1: registrarProducto(Almacen , 7);
         break;
+        case 2: eliminarProducto(Almacen, 7);
+        break;
+        case 3: imprimirRegistro(Almacen, 7);
+        break;
+        case 4: imprimirCompleta(Almacen, 7);
+        break;
     }
 }while(x!=0 && x<7 && x>0);
     return 0;
 }
+
 
