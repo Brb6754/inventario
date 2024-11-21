@@ -107,7 +107,7 @@ void registrarProducto(  Articulo Almacen[], const int size){
             
         }
    
-}
+    }
 }
 
 void eliminarProducto( Articulo Almacen[], const int size){
@@ -156,10 +156,17 @@ void imprimirRegistro(Articulo Almacen[], const int size){
         <<"\n"
         <<"Precio:"
         <<Almacen[x].precio
-        <<"\n"
-        <<"Disponibilidad:"
-        <<Almacen[x].disponibilidad
-        <<"\n"
+        <<"\n";
+        if(Almacen[x].disponibilidad == 0){
+            cout<<"Disponibilidad: "
+                <<"X"
+                <<"\n";
+        }
+        else{
+            cout<<"Disponibilidad: "
+                <<"✓";
+            }
+        cout<<"\n"
         <<"Tipo de Producto:"
         <<Almacen[x].tipo
         <<"\n"
@@ -179,11 +186,18 @@ void imprimirCompleta(Articulo Almacen[], const int size){
         <<"\n"
         <<"Precio:"
         <<Almacen[i].precio
-        <<"\n"
-        <<"Disponibilidad:"
-        <<Almacen[i].disponibilidad
-        <<"\n"
-        <<"Tipo de Producto:"
+        <<"\n";
+        if(Almacen[i].disponibilidad == 0){
+            cout<<"Disponibilidad: "
+                <<"X"
+                <<"\n";
+        }
+        else{
+            cout<<"Disponibilidad: "
+                <<"✓"
+                <<"\n";
+            }
+        cout<<"Tipo de Producto:"
         <<Almacen[i].tipo
         <<"\n"
         <<"Gasto total:"
@@ -195,6 +209,83 @@ void imprimirCompleta(Articulo Almacen[], const int size){
     }
     
 }
+
+void imprimirDisponibilidad(Articulo Almacen[], const int size){
+    int x;
+    cout<<"Ingresa 1 para imprimir disponibles y 2\n" 
+        <<"para imprimir los no disponibles\n";
+    cin>>x;
+    if(x==1){
+        for(int i=0; i<7; i++){
+            if(Almacen[i].disponibilidad == true){
+                cout<<"Nombre:"
+                <<Almacen[i].nombre
+                <<"\n"
+                <<"Cantidad:"
+                <<Almacen[i].cantidad
+                <<"\n"
+                <<"Precio:"
+                <<Almacen[i].precio
+                <<"\n";
+                if(Almacen[i].disponibilidad == 0){
+                    cout<<"Disponibilidad: "
+                    <<"X"
+                    <<"\n";
+                }
+                else{
+                    cout<<"Disponibilidad: "
+                        <<"✓"
+                         <<"\n";
+                    }
+                cout <<"Tipo de Producto:"
+                <<Almacen[i].tipo
+                <<"\n"
+                <<"Gasto total:"
+                <<Almacen[i].total
+                <<"\n"
+                <<"\n";
+            }
+        }
+    }
+    else if(x==2){
+        for(int i=0; i<7; i++){
+            if(Almacen[i].disponibilidad == false){
+                cout<<"Nombre:"
+                <<Almacen[i].nombre
+                <<"\n"
+                <<"Cantidad:"
+                <<Almacen[i].cantidad
+                <<"\n"
+                <<"Precio:"
+                <<Almacen[i].precio
+                <<"\n";
+                if(Almacen[i].disponibilidad == 0){
+                    cout<<"Disponibilidad: "
+                        <<"X"
+                        <<"\n";
+                }
+                else{
+                    cout<<"Disponibilidad: "
+                         <<"✓"
+                         <<"\n";
+                }
+                cout<<"Tipo de Producto:"
+                <<Almacen[i].tipo
+                <<"\n"
+                <<"Gasto total:"
+                <<Almacen[i].total
+                <<"\n"
+                <<"\n";
+            }
+        }
+    }
+    
+    
+    
+}
+
+
+
 int main() {
 //Declaramos el arreglo de estructuras
 Articulo Almacen[7];
@@ -255,7 +346,8 @@ cout<< "Bienvenido al control de inventario \n"
     << "1 Registrar Producto\n"
     << "2 Eliminar un articulo especifico\n"
     << "3 Imprimir un articulo especifico\n"
-    << "4 Imprimir la lista completa\n";
+    << "4 Imprimir la lista completa\n"
+    << "5 Revisar Disponibilidad\n";
     cin>>x;
     
     switch(x){
@@ -267,9 +359,14 @@ cout<< "Bienvenido al control de inventario \n"
         break;
         case 4: imprimirCompleta(Almacen, 7);
         break;
+        case 5: imprimirDisponibilidad(Almacen, 7);
+        break;
     }
 }while(x!=0 && x<7 && x>0);
     return 0;
 }
+
+
+
 
 
