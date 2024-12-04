@@ -1,8 +1,10 @@
+//Bruno Rueda Betancourt
+//Santiago Punyed Gonzalez
 #include <iostream>
 using namespace std;
 
-//Creamos el tipo de dato enum
-enum TipoProducto{
+// Creamos el tipo de dato enum
+enum TipoProducto {
     Proteina = 1,
     Carbohidrato = 2,
     Verdura = 3,
@@ -13,7 +15,8 @@ enum TipoProducto{
     Otros = 8,
     Vacio = 0
 };
-//Creamos la estructura 
+
+// Creamos la estructura
 struct Articulo {
     string nombre;
     int cantidad;
@@ -22,273 +25,186 @@ struct Articulo {
     TipoProducto tipo;
     double total;
 };
-//Funcion registrar producto
-void registrarProducto(  Articulo Almacen[], const int size){
-    for(int i=0; i<7; i++){
-        if( Almacen[i].nombre==""){
-            cout<<"Ingresa el nombre del producto ";
+
+// Función registrar producto
+void registrarProducto(Articulo Almacen[], const int size) {
+    for (int i = 0; i < size; i++) {
+        if (Almacen[i].nombre == "") {
+            cout << "Ingresa el nombre del producto: ";
             string n;
-            cin>>n;
-            Almacen[i].nombre=n;
-            
-            cout<<"Ingresa la cantidad del producto ";
+            cin >> n;
+            Almacen[i].nombre = n;
+
+            cout << "Ingresa la cantidad del producto: ";
             int c;
-            cin>>c;
-            Almacen[i].cantidad=c;
-            
-            cout<<"Ingresa el precio del producto ";
+            cin >> c;
+            Almacen[i].cantidad = c;
+
+            cout << "Ingresa el precio del producto: ";
             double p;
-            cin>>p;
-            Almacen[i].precio=p;
-            
-            cout<<"Ingresa el tipo del producto\n"
-                <<"Proteina = P\n"
-                <<"Carbohidrato = C\n"
-                <<"Verdura = V\n"
-                <<"Fruta = F\n"
-                <<"Desechables = D\n"
-                <<"Limpieza = L\n"
-                <<"Bebidas = B\n"
-                <<"Otros = O\n";
+            cin >> p;
+            Almacen[i].precio = p;
+
+            cout << "Ingresa el tipo del producto\n"
+                 << "Proteína = P\n"
+                 << "Carbohidrato = C\n"
+                 << "Verdura = V\n"
+                 << "Fruta = F\n"
+                 << "Desechables = D\n"
+                 << "Limpieza = L\n"
+                 << "Bebidas = B\n"
+                 << "Otros = O\n";
             char t;
-            cin>>t;
-            switch(t){
-                case 'P': Almacen[i].tipo= Proteina;
-                break;
-                case 'C': Almacen[i].tipo = Carbohidrato;
-                break;
-                case 'V': Almacen[i].tipo = Verdura;
-                break;
-                case 'F': Almacen[i].tipo = Fruta;
-                break;
-                case 'D': Almacen[i].tipo = Desechables;
-                break;
-                case 'L': Almacen[i].tipo= Limpieza;
-                break;
-                case 'B': Almacen[i].tipo= Bebidas;
-                break;
-                case 'O': Almacen[i].tipo= Otros;
-                break;
-                }
-        
-        Almacen[i].total=Almacen[i].cantidad*Almacen[i].precio;
-                
-        cout<<"Registraste el articulo "
-            << Almacen[i].nombre
-            <<"\n"
-            <<"Cantidad: "
-            << Almacen[i].cantidad
-            <<"\n"
-            <<"Precio: "
-            << Almacen[i].precio
-            <<"\n";
-            
-        if(Almacen[i].disponibilidad == 0){
-                cout<<"Disponibilidad: "
-                    <<"X"
-                    <<"\n";
-            
-        }
-        else{
-            cout<<"Disponibilidad: "
-                <<"✓"
-                <<"\n";
+            cin >> t;
+            switch (t) {
+                case 'P': Almacen[i].tipo = Proteina; break;
+                case 'C': Almacen[i].tipo = Carbohidrato; break;
+                case 'V': Almacen[i].tipo = Verdura; break;
+                case 'F': Almacen[i].tipo = Fruta; break;
+                case 'D': Almacen[i].tipo = Desechables; break;
+                case 'L': Almacen[i].tipo = Limpieza; break;
+                case 'B': Almacen[i].tipo = Bebidas; break;
+                case 'O': Almacen[i].tipo = Otros; break;
             }
-        cout<<"Tipo de producto:"
-            <<Almacen[i].tipo
-            <<"\n"
-            <<"Costo Total: "
-            <<Almacen[i].total
-            <<"\n"
-            <<"Poscision: "
-            <<i
-            <<"\n";
+
+            Almacen[i].total = Almacen[i].cantidad * Almacen[i].precio;
+
+            cout << "Registraste el artículo: " << Almacen[i].nombre << "\n"
+                 << "Cantidad: " << Almacen[i].cantidad << "\n"
+                 << "Precio: " << Almacen[i].precio << "\n";
+
+            if (Almacen[i].disponibilidad == 0) {
+                cout << "Disponibilidad: X\n";
+            } else {
+                cout << "Disponibilidad: ✓\n";
+            }
+
+            cout << "Tipo de producto: " << Almacen[i].tipo << "\n"
+                 << "Costo Total: " << Almacen[i].total << "\n"
+                 << "Posición: " << i << "\n";
             break;
-            
         }
-   
     }
 }
-//Funcion eliminar producto
-void eliminarProducto( Articulo Almacen[], const int size){
-    cout<<"Ingresa el nombre del producto que quieres eliminar\n";
+
+// Función eliminar producto
+void eliminarProducto(Articulo Almacen[], const int size) {
+    cout << "Ingresa el nombre del producto que quieres eliminar:\n";
     string nombre;
-    cin>>nombre;
-    
-    for(int i=0; i<7; i++){
-        if(Almacen[i].nombre==nombre){
-            cout<<"Eliminaremos el elemento: "
-                <<nombre
-                <<"\nQue esta en la posicion: "
-                << i
-                <<"\nPara confirmar la operacion ingresa 1\n"
-                <<"Para rechazar la operacion y regresar al menu ingresa 2\n";
+    cin >> nombre;
+
+    for (int i = 0; i < size; i++) {
+        if (Almacen[i].nombre == nombre) {
+            cout << "Eliminaremos el elemento: " << nombre << "\n"
+                 << "Que está en la posición: " << i << "\n"
+                 << "Para confirmar la operación ingresa 1\n"
+                 << "Para rechazar la operación y regresar al menú ingresa 2\n";
             int opcion;
-            cin>>opcion;
-            if(opcion == 1){
-                Almacen[i].nombre="";
-                Almacen[i].cantidad=0;
-                Almacen[i].precio=0.00;
-                Almacen[i].tipo=Vacio;
-                cout<<"Registro Eliminado exitosamente";
-            }
-            else if(opcion == 2){
+            cin >> opcion;
+            if (opcion == 1) {
+                Almacen[i].nombre = "";
+                Almacen[i].cantidad = 0;
+                Almacen[i].precio = 0.00;
+                Almacen[i].tipo = Vacio;
+                cout << "Registro eliminado exitosamente.\n";
+            } else if (opcion == 2) {
                 break;
-                }
-            else{
-                cout<<"El numero no es valido regresaras al menu\n para que vuelvas a intentarlo\n";
+            } else {
+                cout << "El número no es válido, regresarás al menú para que vuelvas a intentarlo.\n";
             }
         }
     }
 }
-//Funcion imprimir Especifico
-void imprimirRegistro(Articulo Almacen[], const int size){
-    cout<<"Ingresa el numero de articulo que deseas imprimir\n"
-        <<"Del 1 al 7\n";
+
+// Función imprimir específico
+void imprimirRegistro(Articulo Almacen[], const int size) {
+    cout << "Ingresa el nombre del artículo que deseas imprimir:\n";
+    string x;
+    cin >> x;
+
+    for (int i = 0; i < size; i++) {
+        if (Almacen[i].nombre == x) {
+            cout << "Nombre: " << Almacen[i].nombre << "\n"
+                 << "Cantidad: " << Almacen[i].cantidad << "\n"
+                 << "Precio: " << Almacen[i].precio << "\n";
+            if (Almacen[i].disponibilidad == 0) {
+                cout << "Disponibilidad: X\n";
+            } else {
+                cout << "Disponibilidad: ✓\n";
+            }
+            cout << "Tipo de Producto: " << Almacen[i].tipo << "\n"
+                 << "Gasto Total: " << Almacen[i].total << "\n";
+                 break;
+        } else {
+            if (i == size - 1) {
+                cout << "El artículo no existe, regresarás al menú.\n";
+            }
+        }
+    }
+}
+
+// Función imprimir toda la lista
+void imprimirCompleta(Articulo Almacen[], const int size) {
+    for (int i = 0; i < size; i++) {
+        if (Almacen[i].nombre != "") {
+            cout << "Nombre: " << Almacen[i].nombre << "\n"
+                 << "Cantidad: " << Almacen[i].cantidad << "\n"
+                 << "Precio: " << Almacen[i].precio << "\n";
+            if (Almacen[i].disponibilidad == 0) {
+                cout << "Disponibilidad: X\n";
+            } else {
+                cout << "Disponibilidad: ✓\n";
+            }
+            cout << "Tipo de Producto: " << Almacen[i].tipo << "\n"
+                 << "Gasto Total: " << Almacen[i].total << "\n\n";
+        }
+    }
+}
+
+// Función revisar disponibilidad
+void imprimirDisponibilidad(Articulo Almacen[], const int size) {
     int x;
-    cin>> x;
-    x=x-1;
-    cout<<"Nombre:"
-        <<Almacen[x].nombre
-        <<"\n"
-        <<"Cantidad:"
-        <<Almacen[x].cantidad
-        <<"\n"
-        <<"Precio:"
-        <<Almacen[x].precio
-        <<"\n";
-        if(Almacen[x].disponibilidad == 0){
-            cout<<"Disponibilidad: "
-                <<"X"
-                <<"\n";
-        }
-        else{
-            cout<<"Disponibilidad: "
-                <<"✓";
-            }
-        cout<<"\n"
-        <<"Tipo de Producto:"
-        <<Almacen[x].tipo
-        <<"\n"
-        <<"Gasto total:"
-        <<Almacen[x].total
-        <<"\n";
-}
-//Funcion imprimir todo
-void imprimirCompleta(Articulo Almacen[], const int size){
-    for(int i=0; i<7; i++){
-        if(Almacen[i].nombre != ""){
-        cout<<"Nombre:"
-        <<Almacen[i].nombre
-        <<"\n"
-        <<"Cantidad:"
-        <<Almacen[i].cantidad
-        <<"\n"
-        <<"Precio:"
-        <<Almacen[i].precio
-        <<"\n";
-        if(Almacen[i].disponibilidad == 0){
-            cout<<"Disponibilidad: "
-                <<"X"
-                <<"\n";
-        }
-        else{
-            cout<<"Disponibilidad: "
-                <<"✓"
-                <<"\n";
-            }
-        cout<<"Tipo de Producto:"
-        <<Almacen[i].tipo
-        <<"\n"
-        <<"Gasto total:"
-        <<Almacen[i].total
-        <<"\n"
-        <<"\n";
-            
-        }
-    }
-    
-}
-//Funcion disponibilidad
-void imprimirDisponibilidad(Articulo Almacen[], const int size){
-    int x;
-    cout<<"Ingresa 1 para imprimir disponibles y 2\n" 
-        <<"para imprimir los no disponibles\n";
-    cin>>x;
-    if(x==1){
-        for(int i=0; i<7; i++){
-            if(Almacen[i].disponibilidad == true){
-                cout<<"Nombre:"
-                <<Almacen[i].nombre
-                <<"\n"
-                <<"Cantidad:"
-                <<Almacen[i].cantidad
-                <<"\n"
-                <<"Precio:"
-                <<Almacen[i].precio
-                <<"\n";
-                if(Almacen[i].disponibilidad == 0){
-                    cout<<"Disponibilidad: "
-                    <<"X"
-                    <<"\n";
-                }
-                else{
-                    cout<<"Disponibilidad: "
-                        <<"✓"
-                         <<"\n";
-                    }
-                cout <<"Tipo de Producto:"
-                <<Almacen[i].tipo
-                <<"\n"
-                <<"Gasto total:"
-                <<Almacen[i].total
-                <<"\n"
-                <<"\n";
+    cout << "Ingresa 1 para imprimir disponibles y 2 para imprimir los no disponibles:\n";
+    cin >> x;
+    if (x == 1) {
+        for (int i = 0; i < size; i++) {
+            if (Almacen[i].disponibilidad == true) {
+                cout << "Nombre: " << Almacen[i].nombre << "\n"
+                     << "Cantidad: " << Almacen[i].cantidad << "\n"
+                     << "Precio: " << Almacen[i].precio << "\n";
+                cout << "Disponibilidad: ✓\n";
+                cout << "Tipo de Producto: " << Almacen[i].tipo << "\n"
+                     << "Gasto Total: " << Almacen[i].total << "\n\n";
             }
         }
-    }
-    else if(x==2){
-        for(int i=0; i<7; i++){
-            if(Almacen[i].disponibilidad == false){
-                cout<<"Nombre:"
-                <<Almacen[i].nombre
-                <<"\n"
-                <<"Cantidad:"
-                <<Almacen[i].cantidad
-                <<"\n"
-                <<"Precio:"
-                <<Almacen[i].precio
-                <<"\n";
-                if(Almacen[i].disponibilidad == 0){
-                    cout<<"Disponibilidad: "
-                        <<"X"
-                        <<"\n";
-                }
-                else{
-                    cout<<"Disponibilidad: "
-                         <<"✓"
-                         <<"\n";
-                }
-                cout<<"Tipo de Producto:"
-                <<Almacen[i].tipo
-                <<"\n"
-                <<"Gasto total:"
-                <<Almacen[i].total
-                <<"\n"
-                <<"\n";
+    } else if (x == 2) {
+        for (int i = 0; i < size; i++) {
+            if (Almacen[i].disponibilidad == false) {
+                cout << "Nombre: " << Almacen[i].nombre << "\n"
+                     << "Cantidad: " << Almacen[i].cantidad << "\n"
+                     << "Precio: " << Almacen[i].precio << "\n";
+                cout << "Disponibilidad: X\n";
+                cout << "Tipo de Producto: " << Almacen[i].tipo << "\n"
+                     << "Gasto Total: " << Almacen[i].total << "\n\n";
             }
         }
     }
 }
-//Funcion imprimir promedio
-void CalcularPromedio(Articulo Almacen[], const int size){
+
+// Función calcular promedio
+void CalcularPromedio(Articulo Almacen[], const int size) {
     double suma = 0.0;
-    for(int i=0; i<size; i++){
-        suma += Almacen[i].total;
+    int x = 0;
+    for (int i = 0; i < size; i++) {
+        if(Almacen[i].nombre != ""){
+            suma += Almacen[i].total;
+            x++;
+        }
     }
-    cout << "Promedio de gasto total: " << suma/size << endl;
+    cout << "Promedio de gasto total: " << suma / x << endl;
 }
-//Funcion ordenar
+
+// Función ordenar lista
 void OrdenarLista(Articulo Almacen[], const int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
@@ -299,101 +215,77 @@ void OrdenarLista(Articulo Almacen[], const int size) {
             }
         }
     }
-    cout << "Lista ordenada: \n";
-    for (int i = 0; i < size; i++) {
-        if (Almacen[i].nombre == 0)
-        {
-            break;
-        }else{
-            cout << "Nombre: " << Almacen[i].nombre 
-             << ", Total: " << Almacen[i].total << endl;
-        }
-    }
+    imprimirCompleta(Almacen, size);
 }
 
 int main() {
-//Declaramos el arreglo de estructuras
-Articulo Almacen[7];
-//Rellenamos los primero 5 espacios
-Almacen[0].nombre ="Pan para Hamburguesa";
-Almacen[0].cantidad = 20;
-Almacen[0].precio = 12.99;
-//Comprobamos la disponibilidad con una condicional
-if(Almacen[0].cantidad>0){
-    Almacen[0].disponibilidad = true;}
-else{Almacen[0].disponibilidad = false;}
-Almacen[0].tipo = Carbohidrato;
-//Calculamos el Dinero total invertido en el producto
-Almacen[0].total= Almacen[0].cantidad * Almacen[0].precio;
+    // Declaramos el arreglo de estructuras
+    Articulo Almacen[7];
 
-//Repetimos
-Almacen[1].nombre ="Refrescos";
-Almacen[1].cantidad = 50;
-Almacen[1].precio = 17.50;
-if(Almacen[1].cantidad>0){
-    Almacen[1].disponibilidad = true;}
-else{Almacen[1].disponibilidad = false;}
-Almacen[1].tipo= Bebidas;
-Almacen[1].total= Almacen[1].cantidad * Almacen[1].precio;
+    // Rellenamos los primeros 5 espacios
+    Almacen[0].nombre = "Pan para Hamburguesa";
+    Almacen[0].cantidad = 20;
+    Almacen[0].precio = 12.99;
+    Almacen[0].disponibilidad = (Almacen[0].cantidad > 0);
+    Almacen[0].tipo = Carbohidrato;
+    Almacen[0].total = Almacen[0].cantidad * Almacen[0].precio;
 
-Almacen[2].nombre ="Tomates";
-Almacen[2].cantidad = 40;
-Almacen[2].precio = 2.33;
-if(Almacen[2].cantidad>0){
-    Almacen[2].disponibilidad = true;}
-else{Almacen[2].disponibilidad = false;}
-Almacen[2].tipo = Verdura;
-Almacen[2].total= Almacen[2].cantidad * Almacen[2].precio;
+    // Repetimos para otros productos
+    Almacen[1].nombre = "Lechuga";
+    Almacen[1].cantidad = 5;
+    Almacen[1].precio = 10.00;
+    Almacen[1].disponibilidad = (Almacen[1].cantidad > 0);
+    Almacen[1].tipo = Verdura;
+    Almacen[1].total = Almacen[1].cantidad * Almacen[1].precio;
 
-Almacen[3].nombre ="Platos";
-Almacen[3].cantidad = 150;
-Almacen[3].precio = 10.50;
-if(Almacen[3].cantidad>0){
-    Almacen[3].disponibilidad = true;}
-else{Almacen[3].disponibilidad = false;}
-Almacen[3].tipo = Desechables;
-Almacen[3].total = Almacen[3].cantidad * Almacen[3].precio;
+    Almacen[2].nombre = "Tomate";
+    Almacen[2].cantidad = 5;
+    Almacen[2].precio = 7.50;
+    Almacen[2].disponibilidad = (Almacen[2].cantidad > 0);
+    Almacen[2].tipo = Verdura;
+    Almacen[2].total = Almacen[2].cantidad * Almacen[2].precio;
 
-Almacen[4].nombre ="Sirlon 250g";
-Almacen[4].cantidad = 0;
-Almacen[4].precio = 45.33;
-if(Almacen[4].cantidad>0){
-    Almacen[4].disponibilidad = true;}
-else{Almacen[4].disponibilidad = false;}
-Almacen[4].tipo = Proteina;
-Almacen[4].total = Almacen[3].cantidad * Almacen[3].precio;
+    Almacen[3].nombre = "Queso";
+    Almacen[3].cantidad = 2;
+    Almacen[3].precio = 40.00;
+    Almacen[3].disponibilidad = (Almacen[3].cantidad > 0);
+    Almacen[3].tipo = Proteina;
+    Almacen[3].total = Almacen[3].cantidad * Almacen[3].precio;
 
-//Menu
-int x =0;
-do{
-cout<< "Bienvenido al control de inventario \n"
-    << "Menu:\n"
-    << "1 Registrar Producto\n"
-    << "2 Eliminar un articulo especifico\n"
-    << "3 Imprimir un articulo especifico\n"
-    << "4 Imprimir la lista completa\n"
-    << "5 Revisar Disponibilidad\n"
-    << "6 Calcular Promedio\n"
-    << "7 Ordenar Lista\n"
-    << "0 Salir\n";
-    cin>>x;
-    
-    switch(x){
-        case 1: registrarProducto(Almacen , 7);
-        break;
-        case 2: eliminarProducto(Almacen, 7);
-        break;
-        case 3: imprimirRegistro(Almacen, 7);
-        break;
-        case 4: imprimirCompleta(Almacen, 7);
-        break;
-        case 5: imprimirDisponibilidad(Almacen, 7);
-        break;
-        case 6: CalcularPromedio(Almacen, 7);
-        break;
-        case 7: OrdenarLista(Almacen, 7);
-        break;
-    }
-}while(x!=0 && x<8 && x>0);
+    Almacen[4].nombre = "Hamburguesa";
+    Almacen[4].cantidad = 10;
+    Almacen[4].precio = 15.99;
+    Almacen[4].disponibilidad = (Almacen[4].cantidad > 0);
+    Almacen[4].tipo = Proteina;
+    Almacen[4].total = Almacen[4].cantidad * Almacen[4].precio;
+
+    // Menú
+    int opcion;
+    do {
+        cout << "\nMenú de opciones:\n"
+             << "1. Registrar producto\n"
+             << "2. Eliminar producto\n"
+             << "3. Imprimir un registro específico\n"
+             << "4. Imprimir todos los registros\n"
+             << "5. Imprimir disponibilidad\n"
+             << "6. Calcular promedio de gasto\n"
+             << "7. Ordenar lista por gasto total\n"
+             << "0. Salir\n";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1: registrarProducto(Almacen, 7); break;
+            case 2: eliminarProducto(Almacen, 7); break;
+            case 3: imprimirRegistro(Almacen, 7); break;
+            case 4: imprimirCompleta(Almacen, 7); break;
+            case 5: imprimirDisponibilidad(Almacen, 7); break;
+            case 6: CalcularPromedio(Almacen, 7); break;
+            case 7: OrdenarLista(Almacen, 7); break;
+            case 0: cout << "Gracias por usar el programa.\n"; break;
+            default: cout << "Opción no válida, intenta de nuevo.\n";
+        }
+    } while (opcion != 0);
+
     return 0;
 }
+
