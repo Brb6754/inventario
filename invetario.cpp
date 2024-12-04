@@ -109,9 +109,11 @@ void eliminarProducto(Articulo Almacen[], const int size) {
                 cout << "Registro eliminado exitosamente.\n";
             } else if (opcion == 2) {
                 break;
-            } else {
-                cout << "El número no es válido, regresarás al menú para que vuelvas a intentarlo.\n";
-            }
+            } 
+            }else {
+                if(i==6){
+                    cout << "El nombre no es válido, regresarás al menú para que vuelvas a intentarlo.\n";
+                }
         }
     }
 }
@@ -288,4 +290,3 @@ int main() {
 
     return 0;
 }
-
