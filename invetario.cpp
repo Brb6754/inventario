@@ -111,7 +111,7 @@ void eliminarProducto(Articulo Almacen[], const int size) {
                 break;
             } 
             }else {
-                if(i==6){
+                if(i==size-1){
                     cout << "El nombre no es válido, regresarás al menú para que vuelvas a intentarlo.\n";
                 }
         }
@@ -254,15 +254,16 @@ int main() {
     Almacen[3].tipo = Proteina;
     Almacen[3].total = Almacen[3].cantidad * Almacen[3].precio;
 
-    Almacen[4].nombre = "Hamburguesa";
+    Almacen[4].nombre = "Refresco";
     Almacen[4].cantidad = 10;
     Almacen[4].precio = 15.99;
     Almacen[4].disponibilidad = (Almacen[4].cantidad > 0);
-    Almacen[4].tipo = Proteina;
+    Almacen[4].tipo = Bebidas;
     Almacen[4].total = Almacen[4].cantidad * Almacen[4].precio;
 
     // Menú
     int opcion;
+    int size=7;
     do {
         cout << "\nMenú de opciones:\n"
              << "1. Registrar producto\n"
@@ -276,13 +277,13 @@ int main() {
         cin >> opcion;
 
         switch (opcion) {
-            case 1: registrarProducto(Almacen, 7); break;
-            case 2: eliminarProducto(Almacen, 7); break;
-            case 3: imprimirRegistro(Almacen, 7); break;
-            case 4: imprimirCompleta(Almacen, 7); break;
-            case 5: imprimirDisponibilidad(Almacen, 7); break;
-            case 6: CalcularPromedio(Almacen, 7); break;
-            case 7: OrdenarLista(Almacen, 7); break;
+            case 1: registrarProducto(Almacen, size); break;
+            case 2: eliminarProducto(Almacen, size); break;
+            case 3: imprimirRegistro(Almacen, size); break;
+            case 4: imprimirCompleta(Almacen, size); break;
+            case 5: imprimirDisponibilidad(Almacen, size); break;
+            case 6: CalcularPromedio(Almacen, size); break;
+            case 7: OrdenarLista(Almacen, size); break;
             case 0: cout << "Gracias por usar el programa.\n"; break;
             default: cout << "Opción no válida, intenta de nuevo.\n";
         }
