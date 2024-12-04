@@ -1,5 +1,5 @@
 //Bruno Rueda Betancourt
-//Santiago Punyed Gonzalez
+//Santiago Antonio Punyed Gonzalez
 #include <iostream>
 using namespace std;
 
